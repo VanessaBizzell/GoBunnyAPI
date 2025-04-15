@@ -1,25 +1,59 @@
 # GoBunnyAPI
-Rabbit API built using Go.
-This API will be used to store and retrieve data about pet rabbits. 
-Sample data is provided in the models.go file
 
-To use:
+GoBunnyAPI is a Rabbit API built using Go, designed to store and retrieve data about pet rabbits. This API provides sample data for testing purposes, which can be found in the `models.go` file.
 
-Start server with:
-`` go run . ``
+## Features
 
-Run tests with:
-``go test``
+- Retrieve data about pet rabbits.
+- Convert Roman numerals into ID integers and retrieve rabbit data.
 
-Test endpoints:
-Endpoint to test server running: 
-`` curl localhost:8000 ``
+---
 
-Endpoint to list all test data: 
-`` curl localhost:8000/api/v1/test/bunnies `` 
+## Getting Started
 
-Endpoint to find a bunny by ID (replace last number with id you want to test):
-``curl "http://localhost:8000/api/v1/test/bunny?id=1"``
+### Prerequisites
 
-Endpoint to convert roman numerals at end of URL into an ID integer and then find a bunny by that ID (replace last characters with roman numerals you want to test):
-``curl "localhost:8000/api/v1/test/IV"``
+- [Go](https://go.dev/) (1.x or higher) installed on your machine.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/VanessaBizzell/GoBunnyAPI.git
+   cd GoBunnyAPI
+
+2. Run the Server:
+  ```bash
+  go run .
+```
+
+## API Endpoints
+### Health Check
+
+Verify if the server is running:
+```bash
+curl localhost:8000
+```
+
+List All Test Data
+(Retrieve all sample bunny data):
+
+```bash
+curl localhost:8000/api/v1/test/bunnies
+```
+Find a Bunny by ID
+(Replace the last integer with the bunny ID you want to retrieve):
+
+```bash
+curl "http://localhost:8000/api/v1/test/bunny?id=2"
+```
+
+Find a Bunny by Roman Numeral ID
+(Replace Roman numerals with the Roman numeral representing the bunny ID you want to retreive):
+
+```bash
+curl "http://localhost:8000/api/v1/test/IV"
+```
+
+
+   
