@@ -14,3 +14,6 @@ Endpoint to test server running:
 
 Endpoint to list all test data: 
 `` curl localhost:8000/api/v1/test/bunnies `` 
+
+Endpoint to find a bunny by ID (replace last number with id you want to test):
+``curl "http://localhost:8000/api/v1/test/bunny?id=1"``
