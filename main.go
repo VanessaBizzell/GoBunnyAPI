@@ -12,6 +12,7 @@ import (
 func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	r.Use(romanToBunnyID)
 	r.Use(contextMiddleware)
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
