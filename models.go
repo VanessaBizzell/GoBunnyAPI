@@ -16,7 +16,3 @@ var bunnies = []*Bunny{
 	{ID: 2, Name: "Jasmine", Breed: "New Zealand White", Age: 2, Description: "A white rabbit with red eyes", Characteristics: "big ears, loves to hop around. Demands attention."},
 	{ID: 3, Name: "Thumper", Breed: "Holland Lop", Age: 4, Description: "A small bunny with floppy ears.", Characteristics: "Loves to dig and chew."},
 }
-
-// func listBunnies() []*Bunny {
-// 	return bunnies
-// }

@@ -12,6 +12,8 @@ import (
 func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	r.Use(contextMiddleware)
+
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Welcome to GoBunnyAPI!"))
 	})
@@ -26,5 +28,6 @@ func bunnyRoutes() chi.Router {
 	r := chi.NewRouter()
 	bunnyHandler := BunnyHandler{}
 	r.Get("/test/bunnies", bunnyHandler.ListBunnies) // Route to get all bunnies
+	r.Get("/test/bunny", bunnyHandler.GetBunnyByID)  // Route to get a specific bunny by ID
 	return r
 }
