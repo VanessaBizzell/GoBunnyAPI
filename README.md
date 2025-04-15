@@ -5,8 +5,11 @@ Sample data is provided in the models.go file
 
 To use:
 
-Start server with 
-`` go run *.go" ``
+Start server with:
+`` go run . ``
+
+Run tests with:
+``go test``
 
 Test endpoints:
 Endpoint to test server running: 
@@ -17,3 +20,6 @@ Endpoint to list all test data:
 
 Endpoint to find a bunny by ID (replace last number with id you want to test):
 ``curl "http://localhost:8000/api/v1/test/bunny?id=1"``
+
+Endpoint to convert roman numerals at end of URL ibto an ID integer and then find a bunny by that ID (replace last characters with roman numerals you want to test):
+``curl "localhost:8000/api/v1/test/IV"``
