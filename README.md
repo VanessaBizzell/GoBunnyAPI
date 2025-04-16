@@ -28,14 +28,14 @@ GoBunnyAPI is a Rabbit API built using Go, designed to store and retrieve data a
 ```
 
 ## API Endpoints
-# Health Check
+ Health Check
 
-# Verify if the server is running:
+ Verify if the server is running:
 ```bash
 curl localhost:8000
 ```
 
-# List All Test Data
+ List All Test Data
 (Retrieve all sample bunny data):
 
 ```bash
@@ -48,7 +48,7 @@ Find a Bunny by ID
 curl "http://localhost:8000/api/v1/test/bunny?id=2"
 ```
 
-# Find a Bunny by Roman Numeral ID
+ Find a Bunny by Roman Numeral ID
 (Replace Roman numerals with the Roman numeral representing the bunny ID you want to retreive):
 
 ```bash
