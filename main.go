@@ -12,10 +12,11 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// main function connects to the databses, initializes the router and starts the server on port 8000.
-// It also sets up a simple route that responds with a welcome message.
-func main() {
+// Global variable for the database connection
+var db *pgx.Conn
 
+// resuseable function to Initialise and connect to the database
+func connectToDatabase() (*pgx.Conn, error) {
 	// Load environment variables from .env file
 	err := godotenv.Load()
 	if err != nil {
@@ -29,15 +30,28 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
 	}
-	defer conn.Close(context.Background())
+	return conn, nil
+}
 
+// main function connects to the databses, initializes the router and starts the server on port 8000.
+// It also sets up a simple route that responds with a welcome message.
+func main() {
+	// Connect to the database
+	var err error
+	db, err = connectToDatabase()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%v\n", err)
+		os.Exit(1)
+	}
+	defer db.Close(context.Background())
+
+	// Test the connection by executing a simple query to return welcome message
 	var greeting string
-	err = conn.QueryRow(context.Background(), "select 'Welcome to GoBunnyAPI!'").Scan(&greeting)
+	err = db.QueryRow(context.Background(), "select 'Welcome to GoBunnyAPI!'").Scan(&greeting)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "QueryRow failed: %v\n", err)
 		os.Exit(1)
 	}
-
 	fmt.Println(greeting)
 
 	// Initialize the router
@@ -60,7 +74,9 @@ func main() {
 func bunnyRoutes() chi.Router {
 	r := chi.NewRouter()
 	bunnyHandler := BunnyHandler{}
-	r.Get("/test/bunnies", bunnyHandler.ListBunnies) // Route to get all bunnies
-	r.Get("/test/bunny", bunnyHandler.GetBunnyByID)  // Route to get a specific bunny by ID
+	// r.Get("/test/bunnies", bunnyHandler.ListBunnies) // Route to get all bunnies
+	// r.Get("/test/bunny", bunnyHandler.GetBunnyByID)  // Route to get a specific bunny by ID
+	r.Get("/test/bunnies", bunnyHandler.GetBunnies)     // Route to get a specific bunny by ID using URL parameter
+	r.Post("/test/makeBunny", bunnyHandler.CreateBunny) // Route to create a new bunny
 	return r
 }
