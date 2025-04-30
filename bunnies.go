@@ -36,10 +36,10 @@ func (b BunnyHandler) GetBunnyByID(w http.ResponseWriter, r *http.Request) {
 	http.Error(w, "Bunny not found", http.StatusNotFound)
 }
 
-// function to list all bunnies
-func listBunnies() []*Bunny {
-	return bunnies
-}
+// // function to list all bunnies
+// func listBunnies() []*Bunny {
+// 	return bunnies
+// }
 
 // function to list all bunnies from the database
 func (b BunnyHandler) GetBunnies(w http.ResponseWriter, r *http.Request) {
@@ -63,7 +63,7 @@ func (b BunnyHandler) GetBunnies(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		// Append the bunny to the slice
-		bunnies = append(bunnies, map[string]interface{}{
+		bunnies = append(bunnies, map[string]any{
 			"id":              id,
 			"name":            name,
 			"breed":           breed,
